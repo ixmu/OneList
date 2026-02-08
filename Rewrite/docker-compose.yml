@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  onelist:
+    build: .
+    container_name: onelist
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      # 宿主机路径 : 容器路径
+      - /etc/onelist:/app
+    environment:
+      # 填入你的授权 URL
+      - INIT_VALUE=你的授权URL在这里修改
+      # 填入挂载的子目录路径
+      - SUB_PATH=/onedrive
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
